@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Interest Calculator</title>
+	<style type="text/css">
+		#main
+		{
+			width:100%;
+			height: 100vh;
+		}
+		#cal
+		{
+			height:290px;
+			width: 500px;
+			border:1px solid black;
+			border-radius: 20px;
+			/*margin-top:50%;*/
+			margin-left: 50%;
+			transform: translate(-50%);
+		}
+		#cal FORM
+		{
+			margin :20px;
+		}
+	</style>
+	<script type="text/javascript">
+		function calculate()
+		{
+				var p, r, t;
+				p = document.getElementById("pa").value;
+				r = document.getElementById("roi").value;
+				t = document.getElementById("time").value;
+				
+				if(document.getElementById('si').checked)
+				{
+					simpleInterest(p,r,t);
+				}
+				else if(document.getElementById('ci').checked)
+				{
+						CompoundInterset(p,r,t);
+				}
+				
+		}
+		function simpleInterest(p , r ,t)
+		{
+			var res = (p*r*t)/100;
+			alert("Simple Interest "+ res);
+		}
+		function CompoundInterset(p , r ,t)
+		{
+			var n = document.getElementById("ctpr").value;
+			var A = (p* Math.pow((1 + (r/(n*100))), (n*t)));
+			alert("Compound Interest "+ (A-p));
+		}
+	</script>
+</head>
+<body>
+<div id="main">
+	<div id="cal">
+		<FORM>
+			Principle Amount: <input id="pa"><br><br>
+			Rate of Interest: <input  id="roi"><br><br>
+			Time: <input id="time"><br><br>
+			Compunding Times Per Year: <input id="ctpr"><br><br>
+			<input type="radio" name="interest" id="si">Simple Interest<br><br>
+			<input type="radio" name="interest" id="ci">Compound Interest<br><br>
+			<button onclick="calculate()">Calculate</button>
+			
+		</FORM>
+		<p id="result"></p>
+	</div>
+
+</div>
+</body>
+</html>
